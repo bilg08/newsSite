@@ -1,10 +1,9 @@
-import {Header} from "../components";
-import css from "../styles/blogPage.module.css";
-import BlogDatas from "../asset/news.json";
-export const BlogPage = () => {
+import {Header} from "../../components/header/header";
+import css from "./blogPage.module.css";
+import BlogDatas from "../../asset/news.json";
+ const BlogPage = () => {
     return (
       <div id={css.BlogPageContainer}>
-        <Header />
         <div className={css.BlogPageMain}>
           <div className={css.BlogPageMainHeader}>
             <h1>Blog Posts</h1>
@@ -33,3 +32,4 @@ export const BlogPage = () => {
       </div>
     );
 }
+export default BlogPage

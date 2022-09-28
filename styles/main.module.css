@@ -1,9 +1,17 @@
 .container{
   width:100%;
   height: auto;
+  position: relative;
 }
 .mainContainer{
-  max-width: 1250px;
+  width: 90%;
   height: 100%;
   margin: auto;
+}
+@media (min-width:1250px) {
+  .mainContainer {
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+  }
 }
