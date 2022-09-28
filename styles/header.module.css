@@ -1,0 +1,40 @@
+.Header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.headerLogo{
+    font-weight:bold;
+    font-size:30px;
+    text-decoration: none;
+    color: black;
+    line-height:37.65px;
+}
+.headerNavBarContainer{
+  display: flex;
+  list-style: none;
+  width: 50%;
+  font-size:16px;
+  font-weight: 700;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerNavBar{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+#HeaderGetAccessButton{
+    border: 2px solid rgba(77, 160, 253, 0.42);
+    border-radius: 4px;
+    color:#4DA0FD;
+    background: #d3f5fd;
+    padding: 10px;
+}
+@media (max-width:1000px) {
+    .headerNavBarContainer {
+            display: none;
+        }
+}
