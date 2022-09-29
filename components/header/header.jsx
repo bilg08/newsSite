@@ -2,32 +2,35 @@ import css from "./header.module.css";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useWindowWidth } from "../../Hook";
 import { useSideBarContext } from "../../context/showSideBar";
-import { useRouter } from "next/router";
+import { useThemeProvider } from "../../theme/themeProvider";
 
 export const Header = () => {
   const windowWidth = useWindowWidth();
-  const { handleSideBar } = useSideBarContext();
-  const router = useRouter();
-  const navBarItems = [
-    { name: "Products" },
-    { name: "Services" },
-    { name: "Contact" },
-    { name: "Login in" },
-    { name: "Blogs",where:'blogPage'},
-    { name: "Get Access" },
+  const { handleSideBar } = useSideBarContext();  const navBarItems = [
+    { name: "Products", where: "blogPage" },
+    { name: "Services", where: "blogPage" },
+    { name: "Contact", where: "blogPage" },
+    { name: "Login in", where: "blogPage" },
+    { name: "Blogs", where: "blogPage" },
+    { name: "Get Access", where: "blogPage" },
   ];
     return (
       <div className={css.Header}>
-        <a href="#" className={css.headerLogo}>
+        <a className={css.headerLogo}>
           team.
         </a>
         <div
-          style={{ display: windowWidth.width <= 1090 ? "none" : "flex" }}
-          className={css.headerNavBarContainer}>
+          style={{ display: windowWidth.width <= 1200 ? "none" : "flex" }}
+          className={css.headerNavBarContainer}
+        >
           <ul className={css.headerNavBar}>
-            {navBarItems.map((navBarItem) => {
+            {navBarItems.map((navBarItem, index) => {
               return (
-                <a key={navBarItem} style={{ color: "#6D7D8B" }} href="#">
+                <a
+                  key={navBarItem + index}
+                  style={{ color: "#6D7D8B" }}
+                  href="#"
+                >
                   <li onClick={() => router.push(navBarItem.where)}>
                     {navBarItem.name}{" "}
                   </li>
@@ -40,7 +43,7 @@ export const Header = () => {
         <AiOutlineMenu
           onClick={() => handleSideBar()}
           style={{
-            display: windowWidth.width <= 1090 ? "block" : "none",
+            display: windowWidth.width <= 1200 ? "block" : "none",
             fontSize: "23px",
           }}
         />

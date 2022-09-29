@@ -1,1 +1,1 @@
-export * from './showSideBar'
+export * from './showSideBar';
