@@ -2,39 +2,45 @@ import css from "./header.module.css";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useWindowWidth } from "../../Hook";
 import { useSideBarContext } from "../../context/showSideBar";
-import { useThemeProvider } from "../../theme/themeProvider";
-
+import { useRouter } from "next/router";
+import { useThemeContext } from "../../theme/themeProvider";
+import sunIcon from '../../asset/sunIcon.png';
+import moonIcon from "../../asset/moonIcon.png";
+import Image from 'next/image'
 export const Header = () => {
   const windowWidth = useWindowWidth();
+  const router = useRouter();
+  const { handleTheme, isDarkTheme, themes } = useThemeContext();
   const { handleSideBar } = useSideBarContext();  const navBarItems = [
-    { name: "Products", where: "blogPage" },
-    { name: "Services", where: "blogPage" },
-    { name: "Contact", where: "blogPage" },
     { name: "Login in", where: "blogPage" },
     { name: "Blogs", where: "blogPage" },
-    { name: "Get Access", where: "blogPage" },
   ];
     return (
       <div className={css.Header}>
-        <a className={css.headerLogo}>
-          team.
-        </a>
+        <p className={css.headerLogo}>team.</p>
         <div
           style={{ display: windowWidth.width <= 1200 ? "none" : "flex" }}
-          className={css.headerNavBarContainer}
-        >
+          className={css.headerNavBarContainer}>
+          <div className={css.toggleThemeBulbContainer}>
+            <Image width={`17px`} height={`17px`} src={moonIcon} />
+            <Image width={`17px`} height={`17px`} src={sunIcon} />
+            <button
+              className={
+                isDarkTheme === true
+                  ? css.toggleThemeBulbInDarkTheme
+                  : css.toggleThemeBulbInLightTheme
+              }
+              // className={css.toggleThemeBulbInLightTheme}
+              onClick={handleTheme}></button>
+          </div>
           <ul className={css.headerNavBar}>
             {navBarItems.map((navBarItem, index) => {
               return (
-                <a
-                  key={navBarItem + index}
-                  style={{ color: "#6D7D8B" }}
-                  href="#"
-                >
+                <p key={navBarItem + index} href="#">
                   <li onClick={() => router.push(navBarItem.where)}>
-                    {navBarItem.name}{" "}
+                    {navBarItem.name}
                   </li>
-                </a>
+                </p>
               );
             })}
           </ul>

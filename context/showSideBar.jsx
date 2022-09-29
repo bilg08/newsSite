@@ -6,7 +6,6 @@ export const SideBarContextProvider = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   function handleSideBar() {
     setIsSideBarOpen(prev => !prev);
-    console.log(isSideBarOpen)
   }
     return (
       <SideBarContext.Provider

@@ -4,14 +4,12 @@
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    color: black;
 }
 .headerLogo{
     font-weight:bold;
     font-size:30px;
     text-decoration: none;
     line-height:37.65px;
-    color: black;
 }
 .headerNavBarContainer{
   display: flex;
@@ -19,14 +17,65 @@
   width: 50%;
   font-size:16px;
   font-weight: 700;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
 .headerNavBar{
-    width: 80%;
+    width:auto;
     display: flex;
     justify-content: space-between;
     list-style: none;
+    gap:15px
+}
+.toggleThemeBulbContainer{
+    width: 50px;
+    height: 24px;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+}
+.toggleThemeBulbInLightTheme{
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right:0;
+}
+.toggleThemeBulbInDarkTheme {
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.toggleThemeBulbInLightTheme:active {
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 2px 3px #47B5FF;
+    
+}
+.toggleThemeBulbInDarkTheme:active {
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 2px 3px #47B5FF;
 }
 #HeaderGetAccessButton{
     border: 2px solid rgba(77, 160, 253, 0.42);

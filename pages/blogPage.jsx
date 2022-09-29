@@ -1,5 +1,4 @@
 import css from "../styles/blogPage.module.css";
-import { useThemeProvider } from "../theme/themeProvider";
 import { useRouter } from "next/router";
 import { useNewsDatasContext } from "../context/newsDatasContext";
 

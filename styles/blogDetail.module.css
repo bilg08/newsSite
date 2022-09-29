@@ -1,18 +1,88 @@
 .userInterestedBlogContainer{
     width: 100%;
-    height: 80vh;
-    background-color: red;
+    height: auto;
+    background: white;
+}
+.BlogDetailsHeaderSection_Header{
+    width: 100%;
+    height: auto;
+    padding: 100px;
+    margin: auto;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
-.userInterestedBlogContainer img{
-    width: 90%;
+.BlogDetailsHeaderSection_Header p {
+    font-size: 14px;
+}
+.bloggerName{
+    font-size: 14px;
+    font-weight: bold;
+}
+.BlogDetailsHeaderSection_BloggerAndBlogDetails{
+    width: 100%;
     height: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap:10px;
+    color: #6D7D8B;
 }
-@media (min-width:1250px) {
-    .userInterestedBlogContainer img{
-        width: 1050px;
-        height: 500px;
+.BloggerPicture{
+    width: 56px;
+    height: 56px;
+}
+.BloggerPicture img{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+.publishDate{
+    padding: 5px 20px;
+    border: none;
+    border-left: 2px solid #6D7D8B;
+    text-align: right;
+}
+.BlogDetailsImageContainer{
+    width:90%;
+    height: 70vh;
+    margin: auto;
+}
+.BlogDetailsImageContainer img{
+    width: 100%;
+    height:100%;
+}
+.BlogDetailsContentDetails{
+    width: 70%;
+    height: auto;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 15px;
+}
+.BlogFooterContainer{
+    width: 90%;
+    height: auto;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width:600px) {
+    .BlogDetailsHeaderSection_Header {
+            width: 100%;
+            height: auto;
+            padding: 100px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
     }
+    .BlogDetailsHeaderSection_BloggerAndBlogDetails{
+        flex-direction: column;
+    }
+    
 }
