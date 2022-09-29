@@ -14,15 +14,16 @@
     margin-bottom: 10px;
     background-color: white;
     padding: 5px;
+    text-align: center;
 }
 .Blog img{
   width: 100%;
+  height:50%;
   border-radius: 30px;
 }
 .BlogFooter{
     width: 100%;
     display: flex;
-    background-color: rebeccapurple;
     justify-content: space-around;
     border-radius: 30px;
     align-items:center;

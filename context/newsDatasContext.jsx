@@ -1,16 +1,19 @@
 import { createContext, useContext, useState } from "react";
+import { useGetDatasHook } from "../Hook/getDatasHook";
 
 const NewsDatasContext = createContext();
 
 export const NewsDatasContextProvider = ({ children }) => {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-  function handleSideBar() {
-    setIsSideBarOpen((prev) => !prev);
-    console.log(isSideBarOpen);
-  }
+  const newsDatas = useGetDatasHook([]);
+  const [userInterestedBlog,setUserInterestedBlog] = useState("")
+  
   return (
     <NewsDatasContext.Provider
-      value={{ isSideBarOpen, setIsSideBarOpen, handleSideBar }}
+      value={{
+        newsDatas,
+        setUserInterestedBlog,
+        userInterestedBlog
+      }}
     >
       {children}
     </NewsDatasContext.Provider>

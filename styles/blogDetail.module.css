@@ -1,0 +1,18 @@
+.userInterestedBlogContainer{
+    width: 100%;
+    height: 80vh;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userInterestedBlogContainer img{
+    width: 90%;
+    height: 50%;
+}
+@media (min-width:1250px) {
+    .userInterestedBlogContainer img{
+        width: 1050px;
+        height: 500px;
+    }
+}

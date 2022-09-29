@@ -5,7 +5,8 @@ function LayOut({children}) {
       <div className={css.container}>
         <div className={css.mainContainer}>
           <Header />
-            {children}
+          {children}
+
           <SideBar/>
         </div>
       </div>
