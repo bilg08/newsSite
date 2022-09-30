@@ -6,11 +6,11 @@ export const ThemeContextProvider = ({ children }) => {
   const themes = {
     darkTheme: {
       background: "black",
-      color: "#47B5FF",
+      color: "#08D9D6",
     },
     lightTheme: {
       body: "transparent",
-      color: "black",
+      color: "#000",
     },
   };
   function handleTheme() {

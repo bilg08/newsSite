@@ -1,7 +1,8 @@
-import { useSideBarContext } from "../context";
+import { useLoadingContext, useSideBarContext } from "../context";
 
 export const Shadow = ({ children }) => {
   const { handleSideBar, isSideBarOpen } = useSideBarContext();
+  const { isLoading, setIsLoading } = useLoadingContext();
   return (
     <div
       onClick={() => handleSideBar()}

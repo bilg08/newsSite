@@ -36,11 +36,12 @@ export const Header = () => {
           <ul className={css.headerNavBar}>
             {navBarItems.map((navBarItem, index) => {
               return (
-                <p key={navBarItem + index} href="#">
-                  <li onClick={() => router.push(navBarItem.where)}>
-                    {navBarItem.name}
-                  </li>
-                </p>
+                <li
+                  key={(navBarItem+index)}
+                  onClick={() => router.push(navBarItem.where)}
+                >
+                  {navBarItem.name}
+                </li>
               );
             })}
           </ul>

@@ -1,5 +1,6 @@
 import { Header, SideBar } from "../components";
 import { Footer } from "../components/footer/footer";
+import { Spinner } from "../components/spinner/spinner";
 import { useThemeContext } from "../theme/themeProvider";
 import css from "./layOut.module.css"
 function LayOut({ children }) {
@@ -10,6 +11,7 @@ function LayOut({ children }) {
           <Header />
           {children}
           <SideBar />
+          <Spinner/>
           <Footer />
         </div>
       </div>

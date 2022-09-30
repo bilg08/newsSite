@@ -1,11 +1,37 @@
-import { Avatar } from "../components/avatar/avatar";
+import { useState, useRef } from "react";
+import { Avatar, StyledInput  } from "../components";
 import { useNewsDatasContext } from "../context/newsDatasContext";
+import { useWindowWidth } from "../Hook";
 import css from '../styles/blogDetail.module.css';
+import { useThemeContext } from "../theme/themeProvider";
 
 export const BlogDetails = () => {
   const { userInterestedBlog } = useNewsDatasContext();
+  const [comments, setComments] = useState([]);
+  const { isDarkTheme } = useThemeContext();
+  console.log(isDarkTheme);
+  const userWritedComment = useRef();
+
+  function handleAddComment() {
+    if (comments.length < 1) {
+      setComments((prev) => {
+        let prevValAcopy = prev;
+        prevValAcopy = [...prevValAcopy, userWritedComment.current.value];
+        return prevValAcopy;
+      });  
+    } else {
+      alert('Та нэг л удаа сэтгэгдэл үлдээх боломжтой')
+    }      
+  }
+
   const BlogDetailsHeaderSection = ({children}) => {
-    return <div className={css.BlogDetailsHeaderSection}>{children}</div>;
+    return (
+      <div
+        className={css.BlogDetailsHeaderSection}
+      >
+        {children}
+      </div>
+    );
   }
   
 
@@ -65,20 +91,7 @@ const BlogDetailsImage = () => {
           corporis voluptatibus, pariatur sequi. Molestias minus error labore
           facere odit! Mollitia porro quo vero doloremque voluptatibus assumenda
           esse. Fugiat repellendus a illo sequi ad, nam consectetur optio?
-          Laboriosam odio vero corrupti ipsum ipsam, nemo nostrum natus eum,
-          maiores, voluptatem numquam! Consequatur, vel, error quasi officia hic
-          veniam nemo necessitatibus laborum nostrum incidunt, animi
-          reprehenderit fuga. Nisi amet consequuntur quisquam, commodi excepturi
-          tempora provident modi obcaecati, dolorem pariatur eum quae minus.
-          Quas, ipsum nostrum! Eveniet fuga non explicabo officia in, magni quo
-          quos velit soluta natus molestias voluptatum facere, vitae, ipsa
-          architecto. Voluptatem sequi debitis minima beatae aspernatur
-          consequatur reiciendis facilis. Iste cumque ex, provident alias in
-          debitis eos animi architecto nisi doloremque unde rerum eaque officia
-          cum. Repellat minus, officia officiis quas odit nihil. Quo voluptatem
-          modi aliquam blanditiis inventore! Harum optio quia enim porro ut
-          consectetur error nesciunt similique recusandae iusto nisi at suscipit
-          et dicta labore reiciendis voluptate alias nobis, hic perferendis
+          Laborioc perferendis
           quidem. Earum hic quod necessitatibus repellendus!
         </p>
       </div>
@@ -100,25 +113,96 @@ const BlogDetailsImage = () => {
   }
   const BlogComments = () => {
     return (
-      <div>
-        
+      <div className={css.BlogCommentsContainer}>
+        <div className={css.ShowBlogComments}>
+          <h2>Ирсэн сэтгэгдлүүд</h2>
+          <div className={css.ShowComments}>
+            {comments.length === 0 ? (
+              <p>Энд одоогоор сэтгэгдэл алга байна</p>
+            ) : (
+              comments.map((comment) => (
+                <span
+                  style={{
+                    width: `70%`,
+                    padding: `10px`,
+                    borderRadius: "10px",
+                    margin: `auto`,
+                    backgroundColor: ` #f1f1f1`,
+                    display: "flex",
+                    gap:`15px`
+                  }}
+                >
+                  <Avatar imgSrc={userInterestedBlog.owner.picture} />
+                  <p>{comment}</p>
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+        <div className={css.addCommentContainer}>
+          <div className={css.addingCommentSection}>
+            <div>
+              <h3>Сэтгэгдэл</h3>
+              <p
+                style={{ color: "#888888", fontSize: `14px` }}
+                className={css.addCommentSectionWarning}
+              >
+                Сэтгэгдэл ({comments.length}) Та сэтгэгдэл бичихдээ хууль зүйн
+                болон ёс суртахууныг баримтална уу. Ёс бус сэтгэгдлийг админ
+                устгах эрхтэй. Мэдээний сэтгэгдэлд би хариуцлага хүлээхгүй.
+              </p>
+            </div>
+            <div>
+              <input
+                ref={userWritedComment}
+                placeholder="Та сэтгэгдлээ оруулна уу"
+                style={{
+                  backgroundColor: ` #f1f1f1`,
+                  borderRradius: `5px`,
+                  padding: `15px`,
+                  resize: `none`,
+                  fontSize: `14px`,
+                  border: `1px solid transparent`,
+                  color: `#000`,
+                  outline: "none",
+                }}
+              />
+
+              <button
+                style={{
+                  border: "none",
+                  borderRadius: `10px`,
+                  width: `90px`,
+                  height: `45px`,
+                  background: `#3490DE`,
+                }}
+                onClick={handleAddComment}
+              >
+                Илгээх
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 
 
 
 
     return (
-      <div className={css.userInterestedBlogContainer}>
+      <div
+        style={{ background: isDarkTheme === true ? "black" : "white" }}
+        className={css.userInterestedBlogContainer}
+      >
         <BlogDetailsHeaderSection>
           <BlogDetailsHeaderSectionHeader_BlogName_BloggerDetail />
-          <BlogDetailsImage/>
-          <BlogDetailsContentDetails/>
+          <BlogDetailsImage />
+          <BlogDetailsContentDetails />
           <BlogFooterWithWrittenBy />
-          <BlogComments/>
+          <BlogComments />
         </BlogDetailsHeaderSection>
       </div>
-  );
+    );
 }
 export default BlogDetails
