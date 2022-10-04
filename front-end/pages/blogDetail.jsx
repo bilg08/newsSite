@@ -1,7 +1,7 @@
+import axios from "axios";
 import { useState, useRef } from "react";
-import { Avatar, StyledInput  } from "../components";
+import { Avatar  } from "../components";
 import { useNewsDatasContext } from "../context/newsDatasContext";
-import { useWindowWidth } from "../Hook";
 import css from '../styles/blogDetail.module.css';
 import { useThemeContext } from "../theme/themeProvider";
 
@@ -9,14 +9,14 @@ export const BlogDetails = () => {
   const { userInterestedBlog } = useNewsDatasContext();
   const [comments, setComments] = useState([]);
   const { isDarkTheme } = useThemeContext();
-  console.log(isDarkTheme);
   const userWritedComment = useRef();
 
-  function handleAddComment() {
+   function handleAddComment() {
     if (comments.length < 1) {
-      setComments((prev) => {
+      setComments(async (prev) => {
         let prevValAcopy = prev;
         prevValAcopy = [...prevValAcopy, userWritedComment.current.value];
+      
         return prevValAcopy;
       });  
     } else {
@@ -196,11 +196,11 @@ const BlogDetailsImage = () => {
         className={css.userInterestedBlogContainer}
       >
         <BlogDetailsHeaderSection>
-          <BlogDetailsHeaderSectionHeader_BlogName_BloggerDetail />
-          <BlogDetailsImage />
-          <BlogDetailsContentDetails />
-          <BlogFooterWithWrittenBy />
-          <BlogComments />
+          <BlogDetailsHeaderSectionHeader_BlogName_BloggerDetail/>
+          <BlogDetailsImage/>
+          <BlogDetailsContentDetails/>
+          <BlogFooterWithWrittenBy/>
+          <BlogComments/>
         </BlogDetailsHeaderSection>
       </div>
     );

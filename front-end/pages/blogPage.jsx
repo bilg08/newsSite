@@ -1,8 +1,7 @@
-import css from "../styles/blogPage.module.css";
 import { useRouter } from "next/router";
 import { useNewsDatasContext } from "../context/newsDatasContext";
 import { Avatar } from "../components/index";
-console.log(Avatar)
+import css from '../styles/BlogPage.module.css'
 const BlogPage = () => {
   const router = useRouter();
   const { newsDatas, setUserInterestedBlog } = useNewsDatasContext();
