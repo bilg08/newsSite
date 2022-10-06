@@ -1,11 +1,5 @@
 const express = require("express")
 const cors = require("cors");
-// const usersDatas = require('./data.json')
-const corsOptions = {
-  origin: '',
-  credentials: true,
-  optionSuccessStatus: 200,
-}
 let users = [
   {
     id: "60d21b4667d0d8992e610c85",
@@ -309,9 +303,14 @@ let users = [
   },
 ];
 
+const corsOptions = {
+  origin: "http://localhost:8000",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 const app = express()
 app.use(cors(corsOptions))
-const port = 8000
+const port = 8000;
 app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -327,16 +326,13 @@ app.get("/users", (req, res) => {
 });
 app.delete('/users/delete/:id', (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  console.log(users, "before");
-  users = users.filter((usersData) => usersData.id !== id);
-  console.log(users, "after");
-  res.send('Got a DELETE request at /user')
+  console.log(id)
+  users = users.filter(user => user.id != id);
+  res.send('Got a DELETE request at /user');
 })
-app.post('/users/post', (req, res) => {
+app.post('/users/post', async(req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   let data = req.body;
-  console.log(data)
   users.push(data);
 });
 
