@@ -10,9 +10,9 @@ function LayOut({ children }) {
         <div className={css.mainContainer}>
           <Header />
           {children}
-          <SideBar />
+          <SideBar/>
           <Spinner/>
-          <Footer />
+          <Footer/>
         </div>
       </div>
     );

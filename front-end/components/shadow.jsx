@@ -12,11 +12,10 @@ export const Shadow = ({ children }) => {
         left: 0,
         width: `100%`,
         height: `100%`,
+        background:'red',
         display: isSideBarOpen === true ? "block" : "none",
-        background: "rgba(255, 255, 255, 0.4)",
       }}
     >
-      {children}
     </div>
   );
 };

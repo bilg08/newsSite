@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useRef } from "react";
 import { Avatar  } from "../components";
+import { useLoadingContext } from "../context";
 import { useNewsDatasContext } from "../context/newsDatasContext";
 import css from '../styles/blogDetail.module.css';
 import { useThemeContext } from "../theme/themeProvider";
@@ -9,19 +10,26 @@ export const BlogDetails = () => {
   const { userInterestedBlog } = useNewsDatasContext();
   const [comments, setComments] = useState([]);
   const { isDarkTheme } = useThemeContext();
+ const { setIsLoading, isLoading } = useLoadingContext();
   const userWritedComment = useRef();
 
-   function handleAddComment() {
-    if (comments.length < 1) {
-      setComments(async (prev) => {
-        let prevValAcopy = prev;
-        prevValAcopy = [...prevValAcopy, userWritedComment.current.value];
+  async function handleAddComment() {
+    setIsLoading(true)
+    console.log(`http://localhost:8000/users/post/${userInterestedBlog.id}`);
+    await axios.post(`http://localhost:8000/users/post/${userInterestedBlog.id}`, {
+       comment:userWritedComment.current.value
+    })
+      .then(setIsLoading(false));
+    // if (comments.length < 1) {
+    //   setComments(async (prev) => {
+    //     let prevValAcopy = prev;
+    //     prevValAcopy = [...prevValAcopy, userWritedComment.current.value];
       
-        return prevValAcopy;
-      });  
-    } else {
-      alert('Та нэг л удаа сэтгэгдэл үлдээх боломжтой')
-    }      
+    //     return prevValAcopy;
+    //   });  
+    // } else {
+    //   alert('Та нэг л удаа сэтгэгдэл үлдээх боломжтой')
+    // }      
   }
 
   const BlogDetailsHeaderSection = ({children}) => {
@@ -117,10 +125,10 @@ const BlogDetailsImage = () => {
         <div className={css.ShowBlogComments}>
           <h2>Ирсэн сэтгэгдлүүд</h2>
           <div className={css.ShowComments}>
-            {comments.length === 0 ? (
+            {userInterestedBlog.comments.length === 0 ? (
               <p>Энд одоогоор сэтгэгдэл алга байна</p>
             ) : (
-              comments.map((comment) => (
+              userInterestedBlog.comments.map((comment) => (
                 <span
                   style={{
                     width: `70%`,
@@ -176,7 +184,14 @@ const BlogDetailsImage = () => {
                   height: `45px`,
                   background: `#3490DE`,
                 }}
-                onClick={handleAddComment}
+                onClick={async() => {
+                  setIsLoading(true)
+    console.log(`http://localhost:8000/users/post/${userInterestedBlog.id}`);
+    await axios.post(`http://localhost:8000/users/post/${userInterestedBlog.id}`, {
+       comment:userWritedComment.current.value
+    })
+      .then(setIsLoading(false));
+                }}
               >
                 Илгээх
               </button>
