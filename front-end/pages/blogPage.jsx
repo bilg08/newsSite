@@ -3,11 +3,20 @@ import { useNewsDatasContext } from "../context/newsDatasContext";
 import { Avatar } from "../components/index";
 import css from '../styles/BlogPage.module.css';
 import axios from "axios";
+import { useLoadingContext } from "../context";
+import { Spinner } from "../components/spinner/spinner";
+
+
+const instance = axios.create({
+  baseURL: `http://localhost:8000/users`,
+  timeout: 1000,
+});
+
 const BlogPage = () => {
   const router = useRouter();
   const { newsDatas, setUserInterestedBlog } = useNewsDatasContext();
-  
-    return (
+  const { setIsLoading } = useLoadingContext();
+  return (
       <div id={css.BlogPageContainer}>
         <div className={css.BlogPageMain}>
           <div className={css.BlogPageMainHeader}>
@@ -47,34 +56,14 @@ const BlogPage = () => {
                     </div>
                     <button
                       onClick={async () => {
-                        // console.log
-                        await axios.delete(
-                          `http://localhost:8000/users/delete/${blogData.id}`,
-                          blogData,
-                          // {
-                          // id: "60d21b4667d0d8992e610c85",
-                          // image:
-                          // "https://ichef.bbci.co.uk/news/976/cpsprodpb/14E02/production/_110660558_hi059476725.jpg",
-                          // likes: 43,
-                          // tags: ["animal", "dog", "golden retriever"],
-                          // text: "adult Labrador retriever",
-                          // publishDate: "2020-05-24T14:53:17.598Z",
-                          // owner: {
-                          // id: "60d0fe4f5311236168a109ca",
-                          // title: "ms",
-                          // firstName: "Sara",
-                          // lastName: "Andersen",
-                          // picture:
-                          // "https://randomuser.me/api/portraits/women/58.jpg",
-                          // },
-                          // },
-                          {
-                            header: {
-                              "Content-type": "application/json; charset=UTF-8",
-                              "app-id": "6336455296396a087298080d",
-                            },
-                          }
-                        );
+                           try {
+                             await axios.delete(
+                               `http://localhost:8000/users/delete/${blogData.id}`
+                             );
+                           } catch (error) {
+                            
+                           }
+                       
                     }}>Hasah</button>
                   </div>
                 );
@@ -82,7 +71,6 @@ const BlogPage = () => {
             )}
           </div>
         </div>
-        {/* <button>hasah</button> */}
       </div>
     );
 }
